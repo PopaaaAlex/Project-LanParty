@@ -3,23 +3,23 @@
 
 void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator citit  )
 {
-	Echipa* newEchipa = (Echipa*)malloc(sizeof(Echipa));
-	newEchipa->contor = index;
-	
-	newEchipa->nume_echipa = (char*)calloc(strlen(nume_echipa)+1, sizeof(char));
-	strcpy(newEchipa->nume_echipa,nume_echipa);
+	Echipa *newEchipa = (Echipa *)malloc(sizeof(Echipa));
 
-	newEchipa->Jucator.Nume=(char*)calloc(strlen(citit.Nume)+1, sizeof(char));
-	strcpy(newEchipa->Jucator.Nume,citit.Nume);
+    newEchipa->nr_participanti = index;
 
-	newEchipa->Jucator.Prenume=(char*)calloc(strlen(citit.Prenume)+1, sizeof(char));
-	strcpy(newEchipa->Jucator.Prenume,citit.Prenume);
+    newEchipa->nume_echipa = (char *)calloc(strlen(nume_echipa) + 1, sizeof(char));
+    strcpy(newEchipa->nume_echipa, nume_echipa);
 
-	newEchipa->Jucator.punctaj = citit.punctaj;
+    newEchipa->Jucator.Nume = (char *)calloc(strlen(citit.Nume) + 1, sizeof(char));
+    strcpy(newEchipa->Jucator.Nume, citit.Nume);
 
-	newEchipa->next = *head;
-	*head = newEchipa;
+    newEchipa->Jucator.Prenume = (char *)calloc(strlen(citit.Prenume) + 1, sizeof(char));
+    strcpy(newEchipa->Jucator.Prenume, citit.Prenume);
 
+    newEchipa->Jucator.punctaj = citit.punctaj;
+
+    newEchipa->next = *head;
+    *head = newEchipa;
 }
 
 /*void addAtEnd(Node** head, int v){

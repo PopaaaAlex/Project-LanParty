@@ -1,5 +1,5 @@
-#ifndef main
-#define main
+#ifndef main_h
+#define main_h
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,13 +17,13 @@ typedef struct Jucator Jucator;
 struct Echipa
 {
     char *nume_echipa;
-    int contor;
+    int nr_participanti;
     struct Jucator Jucator;
     struct Echipa *next;
 };
 
 typedef struct Echipa Echipa;
 
-void citire(FILE *);
+void citire(FILE *,Echipa **);
 
 #endif
