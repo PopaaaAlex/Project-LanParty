@@ -1,30 +1,39 @@
 #include "header/liste.h"
 #include "main.h"
 
-FILE *fisier1, *fisier2;
-
-int main()
+int main(int argc, char *argv[])
 {
+    FILE *fisier1, *fisier2, *fisier3;
     Echipa *echipa = NULL;
     int nr_echipe;
-
-    fisier1=fopen("date/t1/d.in","rt");
-    fisier2=fopen("out/r.out","w");
+    int cerinte[5]= {0};
     
+    //fisier1 = fopen("date/t1/c.in","rt");
+    //fisier2 = fopen("date/t1/d.in","rt");
+    fisier1 = fopen(argv[1],"rt");
+    fisier2 = fopen(argv[2],"rt");
     if(fisier1 == NULL)
         {
-            printf("nu s-a putut deschide");
+            printf("nu s-a putut deschide1 %s\n", argv[1]);
             exit(1);
         }
-    fscanf(fisier1, "%d", &nr_echipe);
-    echipa = (Echipa*)calloc(nr_echipe, sizeof(Echipa));
     
-    citire(fisier1, &echipa);
+    for(int i = 0; i < 5; i++){
+        fscanf(fisier1,"%d", &cerinte[i]);
+    }
+   
+    if(cerinte[0] == 1 ){
+        fscanf(fisier1, "%d", &nr_echipe);
+
+    echipa = (Echipa*)calloc(nr_echipe, sizeof(Echipa));
+    citire(fisier2, &echipa);
+    scriere(echipa, argv[3]);
+    }
     fclose(fisier1); 
 
     if(fisier2 == NULL)
         {
-            printf("nu s-a putut deschide");
+            printf("nu s-a putut deschide2");
             exit(1);
         }
     fclose(fisier2);

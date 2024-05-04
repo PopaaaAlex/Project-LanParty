@@ -1,5 +1,5 @@
 build:
-	gcc main.c -o lanParty
+	gcc main.c ./Functii/liste.c test1.c -o lanParty 
 
-clean:
-	rm -f lanParty
+run:
+	./lanParty c.in d.in r.out

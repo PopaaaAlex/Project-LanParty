@@ -11,9 +11,9 @@ void citire(FILE *fisier, Echipa **echipa)
     for(int i = 0; i < Nr_echipe; i++)
     {
         fscanf(fisier,"%d%c", &nr_participanti, &space);
-        fscanf(fisier,"%s%c",nume_echipa,&space);
-        jucatori=calloc(nr_participanti,sizeof(Jucator));
-
+        fgets(nume_echipa,sizeof(nume_echipa),fisier);
+        jucatori=(Jucator*)calloc(nr_participanti,sizeof(Jucator));       
+        
         for(int j = 0; j < nr_participanti; j++)
         {
             fscanf(fisier,"%s%c",nume, &space);
@@ -27,12 +27,11 @@ void citire(FILE *fisier, Echipa **echipa)
             jucatori[j].Prenume=(char*)calloc(strlen(prenume)+1, sizeof(char));
             strcpy(jucatori[j].Prenume, prenume);
             
-            jucatori[j].punctaj = punctaj;
-            if(echipa[i]==NULL)
-                addAtBeginning(echipa,nume_echipa, nr_participanti, jucatori[j]);
-                else printf("eroare");
+            jucatori[j].punctaj = punctaj; 
+            addAtBeginning(echipa,nume_echipa, nr_participanti, jucatori[j]);               
         }
-        for(int j=0; j < nr_participanti; j++){
+         
+        for(int j = 0; j < nr_participanti; j++){
             free(jucatori[j].Nume);
             free(jucatori[j].Prenume);
         }
@@ -40,7 +39,17 @@ void citire(FILE *fisier, Echipa **echipa)
     }
 }
 
-void scriere(Echipa *head)
+void scriere(Echipa *head, char *argv)
 {
+    FILE *fisier=fopen(argv, "w");
+    while(head->next!= NULL)
+    {
+        head->nume_echipa[strlen(head->nume_echipa)-1] = '\0';
+        fprintf(fisier,"%s", head->nume_echipa);
+        //printf("%s",head->nume_echipa);
+        head=head->next;
 
+    }
+    
+    fclose(fisier);
 }

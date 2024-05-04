@@ -25,5 +25,6 @@ struct Echipa
 typedef struct Echipa Echipa;
 
 void citire(FILE *,Echipa **);
+void scriere(Echipa*, char* );
 
 #endif
