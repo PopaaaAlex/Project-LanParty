@@ -18,13 +18,15 @@ struct Echipa
 {
     char *nume_echipa;
     int nr_participanti;
-    struct Jucator Jucator;
+    float punc_e;
+    Jucator *Jucator;
     struct Echipa *next;
 };
 
 typedef struct Echipa Echipa;
 
-void citire(FILE *,Echipa **);
-void scriere(Echipa*, char* );
 
+void citire(FILE *,Echipa *, int *);
+void scriere(Echipa*, char*);
+int putere_doi(int *);
 #endif

@@ -23,10 +23,7 @@ int main(int argc, char *argv[])
     }
    
     if(cerinte[0] == 1 ){
-        fscanf(fisier1, "%d", &nr_echipe);
-
-    echipa = (Echipa*)calloc(nr_echipe, sizeof(Echipa));
-    citire(fisier2, &echipa);
+    citire(fisier2, echipa, &nr_echipe);
     scriere(echipa, argv[3]);
     }
     fclose(fisier1); 

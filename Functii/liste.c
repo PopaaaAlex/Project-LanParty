@@ -1,23 +1,25 @@
 #include "../main.h"
 #include "../header/liste.h"
 
-void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator citit  )
+void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator *citit, float puntaj_e  )
 {
 	Echipa *newEchipa = (Echipa*)malloc(sizeof(Echipa));
-
-    newEchipa->nr_participanti = index;
-
-    newEchipa->nume_echipa = (char*)calloc(strlen(nume_echipa) + 1, sizeof(char));
+	newEchipa->punc_e=puntaj_e;
+	newEchipa->nume_echipa = (char*)calloc(strlen(nume_echipa) + 1, sizeof(char));
     strcpy(newEchipa->nume_echipa, nume_echipa);
+    
+	newEchipa->nr_participanti = index;
+	newEchipa->Jucator=calloc(index, sizeof(Jucator));
+		for(int i = 0; i < index; i++){  
+		
+		newEchipa->Jucator[i].Nume = (char*)calloc(strlen(citit[i].Nume) + 1, sizeof(char));
+		strcpy(newEchipa->Jucator[i].Nume, citit[i].Nume);
 
-    newEchipa->Jucator.Nume = (char*)calloc(strlen(citit.Nume) + 1, sizeof(char));
-    strcpy(newEchipa->Jucator.Nume, citit.Nume);
+		newEchipa->Jucator[i].Prenume = (char*)calloc(strlen(citit[i].Prenume) + 1, sizeof(char));
+		strcpy(newEchipa->Jucator[i].Prenume, citit[i].Prenume);
 
-    newEchipa->Jucator.Prenume = (char*)calloc(strlen(citit.Prenume) + 1, sizeof(char));
-    strcpy(newEchipa->Jucator.Prenume, citit.Prenume);
-
-    newEchipa->Jucator.punctaj = citit.punctaj;
-
+		newEchipa->Jucator[i].punctaj = citit[i].punctaj;
+		}
     newEchipa->next = *head;
     *head = newEchipa;
 }
@@ -33,17 +35,17 @@ void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator citit  )
 		aux->next = newNode;
 		newNode->next = NULL; 
 	}
-}
+}*/
 
-void deleteNode(Node **head, int v){	
+void deleteNode(Echipa **head, float v){	
 	if (*head==NULL) return; 
-	Node *headcopy = *head;
+	Echipa *headcopy = *head;
 	if (headcopy->punctaj==v){
 		*head = (*head)->next;
 		free(headcopy);
 		return; 
 	}
-	Node *prev = *head;
+	Echipa *prev = *head;
 	while (headcopy!=NULL){
 		if(headcopy->punctaj!=v){
 			prev = headcopy;
@@ -54,4 +56,4 @@ void deleteNode(Node **head, int v){
 			return; 
 		} 
 	}
-}*/
+}

@@ -1,14 +1,15 @@
 #include "./header/liste.h"
 #include "main.h"
 
-void citire(FILE *fisier, Echipa **echipa)
+void citire(FILE *fisier, Echipa *echipa, int *Nr_echipe)
 {
     Jucator *jucatori;
-    int Nr_echipe, nr_participanti = 0, punctaj = 0;
+    int  nr_participanti = 0, punctaj = 0;
+    float punctaj_e = 0;
     char nume_echipa[50], nume[20], prenume[30], space;
-    fscanf(fisier, "%d%c", &Nr_echipe, &space);
-    
-    for(int i = 0; i < Nr_echipe; i++)
+    fscanf(fisier, "%d", Nr_echipe);
+    echipa = (Echipa*)calloc((*Nr_echipe), sizeof(Echipa));
+    for(int i = 0; i < (*Nr_echipe); i++)
     {
         fscanf(fisier,"%d%c", &nr_participanti, &space);
         fgets(nume_echipa,sizeof(nume_echipa),fisier);
@@ -28,8 +29,11 @@ void citire(FILE *fisier, Echipa **echipa)
             strcpy(jucatori[j].Prenume, prenume);
             
             jucatori[j].punctaj = punctaj; 
-            addAtBeginning(echipa,nume_echipa, nr_participanti, jucatori[j]);               
+            punctaj_e=punctaj_e+punctaj;
+                           
         }
+        punctaj_e = punctaj_e /nr_participanti;
+        addAtBeginning(&echipa,nume_echipa, nr_participanti, jucatori, punctaj_e);
          
         for(int j = 0; j < nr_participanti; j++){
             free(jucatori[j].Nume);
@@ -42,14 +46,31 @@ void citire(FILE *fisier, Echipa **echipa)
 void scriere(Echipa *head, char *argv)
 {
     FILE *fisier=fopen(argv, "w");
-    while(head->next!= NULL)
+    while(head!= NULL)
     {
         head->nume_echipa[strlen(head->nume_echipa)-1] = '\0';
-        fprintf(fisier,"%s", head->nume_echipa);
-        //printf("%s",head->nume_echipa);
+        fprintf(fisier,"%s\n", head->nume_echipa);
+        //printf("%s\n",head->nume_echipa);
         head=head->next;
 
     }
     
     fclose(fisier);
+}
+
+int putere_doi(int *nr_echipe)
+{
+    int x;
+    while((x * 2) < nr_echipe)
+        x=x*2;
+    
+    return x;
+}
+
+void eliminare(Echipa *echipa,int *Nr_echipe, int nr_ramas)
+{
+    while(nr_ramas<*Nr_echipe)
+    {
+        
+    }
 }

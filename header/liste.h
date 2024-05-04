@@ -3,7 +3,7 @@
 
 #include"../main.h"
 
-void addAtBeginning(Echipa **, char *, int, Jucator );
+void addAtBeginning(Echipa **, char *, int, Jucator*, float );
 //void addAtEnd(**, int v);
 //void deleteNode( **, int v);	
 
