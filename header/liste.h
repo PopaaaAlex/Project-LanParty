@@ -5,6 +5,6 @@
 
 void addAtBeginning(Echipa **, char *, int, Jucator*, float );
 //void addAtEnd(**, int v);
-//void deleteNode( **, int v);	
+void deleteNode(Echipa **, float);	
 
 #endif

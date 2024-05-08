@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "liste.h": "c",
-        "main.h": "c"
+        "main.h": "c",
+        "coada.h": "c"
     }
 }

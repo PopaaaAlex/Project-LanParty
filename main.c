@@ -28,13 +28,6 @@ int main(int argc, char *argv[])
     }
     fclose(fisier1); 
 
-    if(fisier2 == NULL)
-        {
-            printf("nu s-a putut deschide2");
-            exit(1);
-        }
-    fclose(fisier2);
-
     free(echipa); 
     return 0;
 }

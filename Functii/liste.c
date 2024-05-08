@@ -40,14 +40,14 @@ void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator *citit, 
 void deleteNode(Echipa **head, float v){	
 	if (*head==NULL) return; 
 	Echipa *headcopy = *head;
-	if (headcopy->punctaj==v){
+	if (headcopy->punc_e==v){
 		*head = (*head)->next;
 		free(headcopy);
 		return; 
 	}
 	Echipa *prev = *head;
 	while (headcopy!=NULL){
-		if(headcopy->punctaj!=v){
+		if(headcopy->punc_e != v){
 			prev = headcopy;
 			headcopy = headcopy->next;
 		}else{

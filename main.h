@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
 struct Jucator
 {
@@ -29,4 +30,7 @@ typedef struct Echipa Echipa;
 void citire(FILE *,Echipa *, int *);
 void scriere(Echipa*, char*);
 int putere_doi(int *);
+void eliminare(Echipa*, int*);
+float minim(Echipa*);
+
 #endif

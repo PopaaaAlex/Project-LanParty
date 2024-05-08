@@ -58,19 +58,3 @@ void scriere(Echipa *head, char *argv)
     fclose(fisier);
 }
 
-int putere_doi(int *nr_echipe)
-{
-    int x;
-    while((x * 2) < nr_echipe)
-        x=x*2;
-    
-    return x;
-}
-
-void eliminare(Echipa *echipa,int *Nr_echipe, int nr_ramas)
-{
-    while(nr_ramas<*Nr_echipe)
-    {
-        
-    }
-}
