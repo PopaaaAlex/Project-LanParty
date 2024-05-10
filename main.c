@@ -4,8 +4,8 @@
 int main(int argc, char *argv[])
 {
     FILE *fisier1, *fisier2, *fisier3;
-    Echipa *echipa = NULL;
-    int nr_echipe;
+    Echipa *echipe = NULL;
+    int nr_echipe = 0;
     int cerinte[5]= {0};
     
     //fisier1 = fopen("date/t1/c.in","rt");
@@ -23,11 +23,13 @@ int main(int argc, char *argv[])
     }
    
     if(cerinte[0] == 1 ){
-    citire(fisier2, &echipa, &nr_echipe);
-    scriere(echipa, argv[3]);
+    citire(fisier2, &echipe, &nr_echipe);
+    scriere(echipe, argv[3]);
     }
     fclose(fisier1); 
+    fclose(fisier2);
 
-    free(echipa); 
+    while (echipe != NULL)
+        removeEchipa(&echipe);
     return 0;
 }

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <limits.h>
 
-struct Jucator
+struct Jucator 
 {
     char *Nume;
     char *Prenume;
@@ -15,7 +15,7 @@ struct Jucator
 
 typedef struct Jucator Jucator;
 
-struct Echipa
+struct Echipa 
 {
     char *nume_echipa;
     int nr_participanti;
