@@ -1,14 +1,14 @@
 #include "./header/liste.h"
 #include "main.h"
 
-void citire(FILE *fisier, Echipa *echipa, int *Nr_echipe)
+void citire(FILE *fisier, Echipa **echipa, int *Nr_echipe)
 {
     Jucator *jucatori;
     int  nr_participanti = 0, punctaj = 0;
     float punctaj_e = 0;
     char nume_echipa[50], nume[20], prenume[30], space;
     fscanf(fisier, "%d", Nr_echipe);
-    echipa = (Echipa*)calloc((*Nr_echipe), sizeof(Echipa));
+    *echipa = (Echipa*)calloc((*Nr_echipe), sizeof(Echipa));
     for(int i = 0; i < (*Nr_echipe); i++)
     {
         fscanf(fisier,"%d%c", &nr_participanti, &space);
@@ -22,18 +22,17 @@ void citire(FILE *fisier, Echipa *echipa, int *Nr_echipe)
             fscanf(fisier,"%d",&punctaj);
             
             jucatori[j].Nume=(char*)calloc(strlen(nume)+1, sizeof(char));
-            
             strcpy(jucatori[j].Nume, nume);
 
             jucatori[j].Prenume=(char*)calloc(strlen(prenume)+1, sizeof(char));
             strcpy(jucatori[j].Prenume, prenume);
             
             jucatori[j].punctaj = punctaj; 
-            punctaj_e=punctaj_e+punctaj;
+            punctaj_e= punctaj_e+punctaj;
                            
         }
-        punctaj_e = punctaj_e /nr_participanti;
-        addAtBeginning(&echipa,nume_echipa, nr_participanti, jucatori, punctaj_e);
+        punctaj_e = punctaj_e / nr_participanti;
+        addAtBeginning(echipa, nume_echipa, nr_participanti, jucatori, punctaj_e);
          
         for(int j = 0; j < nr_participanti; j++){
             free(jucatori[j].Nume);

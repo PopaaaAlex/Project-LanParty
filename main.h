@@ -26,10 +26,9 @@ struct Echipa
 
 typedef struct Echipa Echipa;
 
-
-void citire(FILE *,Echipa *, int *);
+void citire(FILE *,Echipa **, int *);
 void scriere(Echipa*, char*);
-int putere_doi(int *);
+int echipe_ramase(int *);
 void eliminare(Echipa*, int*);
 float minim(Echipa*);
 

@@ -4,7 +4,7 @@
 void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator *citit, float puntaj_e  )
 {
 	Echipa *newEchipa = (Echipa*)malloc(sizeof(Echipa));
-	newEchipa->punc_e=puntaj_e;
+	newEchipa->punc_e = puntaj_e;
 	newEchipa->nume_echipa = (char*)calloc(strlen(nume_echipa) + 1, sizeof(char));
     strcpy(newEchipa->nume_echipa, nume_echipa);
     
@@ -24,18 +24,6 @@ void addAtBeginning(Echipa **head, char *nume_echipa, int index,Jucator *citit, 
     *head = newEchipa;
 }
 
-/*void addAtEnd(Node** head, int v){
-	Node *aux = *head;
-	Node *newNode = (Node*)malloc(sizeof(Node)); 
-	newNode->punctaj = v; 
-	if (*head == NULL) addAtBeginning(head, v);
-	else{ 
-		while (aux->next!=NULL) 
-			aux = aux->next;
-		aux->next = newNode;
-		newNode->next = NULL; 
-	}
-}*/
 
 void deleteNode(Echipa **head, float v){	
 	if (*head==NULL) return; 

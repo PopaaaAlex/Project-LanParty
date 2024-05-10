@@ -14,26 +14,15 @@ void deleteStack(Echipa **top){
 	}
 }	
 
-int pop(Echipa**top) {
-	if (isEmpty(*top)) return INT_MIN; 
-	Echipa *temp=(*top);  		
-	int aux=temp->val;			
-	*top=(*top)->next;      		
-	free(temp);
-	return aux;
-}
+
 
 void push(Echipa**top, int v) {
-	Echipa* newNode=(Echipa*)Echipa(sizeof(Node));
+	Echipa* newNode=(Echipa*)calloc(1,sizeof(Echipa));
 	newNode->val=v;
 	newNode->next=*top;
 	*top=newNode;
 }
 
-/*int top(Echipa *top){
-	if (isEmpty(top)) return INT_MIN;
-	return top->val;
-}*/
 
 void printStack(Echipa* stack){
 	while (!isEmpty(stack))

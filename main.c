@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     }
    
     if(cerinte[0] == 1 ){
-    citire(fisier2, echipa, &nr_echipe);
+    citire(fisier2, &echipa, &nr_echipe);
     scriere(echipa, argv[3]);
     }
     fclose(fisier1); 

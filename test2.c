@@ -1,10 +1,10 @@
 #include "./header/liste.h"
 #include "main.h"
 
-int putere_doi(int *nr_echipe)
+int echipe_ramase(int *nr_echipe)
 {
     int x;
-    while((x * 2) < nr_echipe)
+    while((x * 2) < *nr_echipe)
         x=x*2;
     
     return x;
@@ -14,7 +14,7 @@ void eliminare(Echipa *echipa,int *Nr_echipe)
 {
     float x; 
     int nr_ramas;
-    nr_ramas  =putere_doi(Nr_echipe);
+    nr_ramas  = echipe_ramase(Nr_echipe);
     while(nr_ramas < *Nr_echipe)
     {
         x = minim(echipa);
@@ -34,4 +34,6 @@ float minim(Echipa *echipa)
     }
     return x;
 }
+
+
 
