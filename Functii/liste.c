@@ -1,5 +1,6 @@
 #include "../main.h"
 #include "../header/liste.h"
+#include <math.h>
 
 void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit, float puntaj_e )
 {
@@ -32,22 +33,26 @@ void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit,
 void deleteNode(Echipa **head, float v){	
 	if (*head==NULL) return; 
 	Echipa *headcopy = *head;
-	if (headcopy->punc_e==v){
+	if (headcopy->punc_e == v){
 		*head = (*head)->next;
 		free(headcopy);
 		return; 
 	}
 	Echipa *prev = *head;
-	while (headcopy!=NULL){
-		if(headcopy->punc_e != v){
+	while (headcopy != NULL && headcopy->punc_e != v){
+
 			prev = headcopy;
 			headcopy = headcopy->next;
-		}else{
-			prev->next = headcopy->next;
-			free(headcopy); 
-			return; 
-		} 
-	}
+		}
+	if (headcopy == NULL) return;
+    
+	
+	if(prev == NULL)
+		*head = headcopy->next;	
+			else
+				prev->next = headcopy->next;
+		
+	free(headcopy);
 }
 
 void removeEchipa(Echipa **head) {

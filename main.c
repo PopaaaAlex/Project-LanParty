@@ -22,10 +22,20 @@ int main(int argc, char *argv[])
         fscanf(fisier1,"%d", &cerinte[i]);
     }
    
-    if(cerinte[0] == 1 ){
+    if(cerinte[0] == 1 && cerinte[1] == 0){
     citire(fisier2, &echipe, &nr_echipe);
     scriere(echipe, argv[3]);
     }
+
+    if (cerinte[1] == 1 && cerinte[2] == 0)
+    {
+        citire(fisier2, &echipe, &nr_echipe);
+        //afisare(echipe);
+        eliminare(&echipe, &nr_echipe);
+        scriere(echipe, argv[3]);
+    }
+    
+
     fclose(fisier1); 
     fclose(fisier2);
 

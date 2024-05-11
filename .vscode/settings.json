@@ -2,6 +2,7 @@
     "files.associations": {
         "liste.h": "c",
         "main.h": "c",
-        "coada.h": "c"
+        "coada.h": "c",
+        "math.h": "c"
     }
 }
