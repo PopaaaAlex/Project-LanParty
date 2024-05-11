@@ -1,4 +1,5 @@
 #include "./header/liste.h"
+#include "./header/coada.h"
 #include "main.h"
 
 void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
@@ -6,7 +7,6 @@ void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
     Jucator *jucatori = NULL;
     Echipa *cap_echipa = NULL;
     int nr_participanti = 0, punctaj = 0;
-    float punctaj_e = 0;
     char nume_echipa[50], nume[20], prenume[30], space;
     fscanf(fisier, "%d\n", Nr_echipe);
     for (int i = 0; i < *Nr_echipe; i++)
@@ -15,7 +15,7 @@ void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
         fgets(nume_echipa, sizeof(nume_echipa), fisier);
         jucatori = (Jucator *)calloc(nr_participanti, sizeof(Jucator));
         
-        punctaj_e = 0;
+         float punctaj_e = 0;        
         for (int j = 0; j < nr_participanti; j++)
         {
             fscanf(fisier, "%s%c", nume, &space);
@@ -31,7 +31,6 @@ void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
             jucatori[j].punctaj = punctaj;
             punctaj_e += punctaj;
         }
-        //printf("\n");
         punctaj_e /= nr_participanti;
         
         addAtBeginning(echipe, nume_echipa, nr_participanti, jucatori, punctaj_e);
@@ -78,7 +77,6 @@ void eliminare(Echipa **echipa, int *Nr_echipe)
     while (nr_ramas < *Nr_echipe)
     {
         x = minim(*echipa);
-        //printf("%.2f\n", x);
         deleteNode(echipa, x);
         (*Nr_echipe)--;
     }
@@ -97,12 +95,26 @@ float minim(Echipa *echipa)
     return x;
 }
 
-
-void afisare(Echipa *head)
+void afisare(Echipa *echipa)
 {
-    while(head != NULL)
+    while(echipa != NULL)
     {
-        printf("%lf %s", head->punc_e, head->nume_echipa);
-        head = head->next;
+        //printf("%s", echipa->nume_echipa);
+        echipa = echipa->next;
     }
+}
+//Task[3]
+
+void citire_coada(Echipa *echipe, coada **queue, int nr_echipe)
+{
+    for(int i = 0; i < nr_echipe; i++)
+    {
+        enQueue((*queue), echipe);
+        echipe = echipe->next;
+    }
+}
+
+void meciuri(coada* queue)
+{
+    
 }

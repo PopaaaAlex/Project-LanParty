@@ -1,11 +1,11 @@
 #include "../main.h"
 #include "../header/stiva.h"
 
-int isEmpty(Echipa *top){
+int isEmpty(stiva *top){
 	return top==NULL;
 }
 	
-void deleteStack(Echipa **top){
+void deleteStack(stiva **top){
 	Echipa  *temp;
 	while ((*top)!=NULL){ // !isEmpty(*top)
 		temp=*top;

@@ -33,4 +33,5 @@ void eliminare(Echipa**, int*);
 float minim(Echipa*);
 void afisare(Echipa*);
 
+
 #endif

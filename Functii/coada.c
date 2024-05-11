@@ -1,6 +1,10 @@
 #include "../main.h"
 #include "../header/coada.h"
 
+int isEmpty_q(coada *queue){
+	return queue == NULL;
+}
+
 coada* createQueue ()
 {
 	coada *q;
@@ -32,7 +36,7 @@ if (q->fata == NULL ) q->fata = q-> spate ;
 Echipa *deQueue(coada *q) {  
 	coada aux; 
 	Echipa *e = (Echipa*)calloc(1,sizeof(Echipa));
-	if (isEmpty(q)) exit(1);
+	if (isEmpty_q(q)) exit(1);
 	
 	aux.fata = q->fata; 
 	e->punc_e = aux.fata->punc_e;
@@ -42,3 +46,15 @@ Echipa *deQueue(coada *q) {
 	free(aux.fata);
 	return e;  	
 } 
+
+void afisare_coada(coada* q, char *argv)
+{
+	FILE *fisier = fopen(argv, "w");
+	while( q->fata != NULL)
+	{
+		q->fata->nume_echipa[strlen(q->fata->nume_echipa) - 1] = '\0';
+		fprintf(fisier, "%s\n", q->fata->nume_echipa);
+		q->fata = q->fata->next;
+	}
+	fclose(fisier);
+}

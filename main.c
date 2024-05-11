@@ -1,10 +1,12 @@
-#include "header/liste.h"
+#include "./header/liste.h"
+#include "./header/coada.h"
 #include "main.h"
 
 int main(int argc, char *argv[])
 {
     FILE *fisier1, *fisier2, *fisier3;
     Echipa *echipe = NULL;
+    coada *queue = createQueue();
     int nr_echipe = 0;
     int cerinte[5]= {0};
     
@@ -30,9 +32,18 @@ int main(int argc, char *argv[])
     if (cerinte[1] == 1 && cerinte[2] == 0)
     {
         citire(fisier2, &echipe, &nr_echipe);
-        //afisare(echipe);
         eliminare(&echipe, &nr_echipe);
         scriere(echipe, argv[3]);
+    }
+
+    if(cerinte[2] == 1 && cerinte[3] == 0)
+    {
+        citire(fisier2, &echipe, &nr_echipe);
+        eliminare(&echipe, &nr_echipe);
+        citire_coada(echipe, &queue, nr_echipe);
+        afisare_coada(queue,argv[3]);
+
+        
     }
     
 

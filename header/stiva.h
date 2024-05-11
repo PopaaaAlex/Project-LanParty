@@ -1,9 +1,15 @@
-#ifndef stiva
-#define stiva
+#ifndef stiva_h
+#define stiva_h
 
 #include"../main.h"
 
-int isEmpty(Echipa*);
-void deleteStack(Echipa**);
+struct stiva{
+    Echipa val;
+    struct stiva *next;
+};
+typedef struct stiva stiva;
+
+int isEmpty(stiva*);
+void deleteStack(stiva**);
 
 #endif
