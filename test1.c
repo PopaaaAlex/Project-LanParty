@@ -114,7 +114,27 @@ void citire_coada(Echipa *echipe, coada **queue, int nr_echipe)
     }
 }
 
-void meciuri(coada* queue)
-{
+void meciuri(coada* queue, int *nr_echipe, char *argv){
+   
+    stiva *castigatori = NULL, *pierzatori = NULL;
+    FILE *fisier;
+    fisier = fopen(argv,"a");
+    while(!isEmpty_q(queue)){
+    Echipa *echipa_1 = deQueue(queue), *echipa_2 = deQueue(queue);
     
-}
+    
+    if(echipa_1->punc_e >= echipa_2->punc_e)
+        {
+            echipa_1->punc_e++;
+            push(&castigatori, echipa_1);
+            push(&pierzatori, echipa_2);
+        }
+        else if(echipa_2->punc_e > echipa_1->punc_e)
+                {
+                    echipa_2->punc_e++;
+                    push(&castigatori, echipa_2);
+                    push(&pierzatori, echipa_1);
+                }            
+
+    }
+}//in coada iau bine informatiile 

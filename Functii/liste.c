@@ -1,6 +1,5 @@
-#include "../main.h"
 #include "../header/liste.h"
-#include <math.h>
+
 
 void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit, float puntaj_e )
 {

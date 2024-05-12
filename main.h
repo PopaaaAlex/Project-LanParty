@@ -6,13 +6,13 @@
 #include <string.h>
 #include <limits.h>
 
+
 struct Jucator 
 {
     char *Nume;
     char *Prenume;
     int punctaj;
 };
-
 typedef struct Jucator Jucator;
 
 struct Echipa 
@@ -23,7 +23,6 @@ struct Echipa
     Jucator *Jucator;
     struct Echipa *next;
 };
-
 typedef struct Echipa Echipa;
 
 void citire(FILE *,Echipa **, int *);

@@ -1,8 +1,7 @@
-#include "../main.h"
 #include "../header/coada.h"
 
 int isEmpty_q(coada *queue){
-	return queue == NULL;
+	return (queue->fata) == NULL;
 }
 
 coada* createQueue ()
@@ -16,7 +15,7 @@ coada* createQueue ()
 
 void enQueue ( coada *q, Echipa *v)
 {
-	Echipa * newNode =( Echipa *) malloc ( sizeof ( Echipa ));
+	Echipa * newNode =( Echipa *)malloc(sizeof(Echipa));
 	newNode->punc_e = v->punc_e;
 	newNode->nume_echipa= (char*)calloc(strlen(v->nume_echipa)+1,sizeof(char));
 	strcpy(newNode->nume_echipa, v->nume_echipa);
@@ -33,17 +32,16 @@ void enQueue ( coada *q, Echipa *v)
 if (q->fata == NULL ) q->fata = q-> spate ;
 }
 
-Echipa *deQueue(coada *q) {  
-	coada aux; 
+Echipa* deQueue(coada *q) {  
+	Echipa *aux; 
 	Echipa *e = (Echipa*)calloc(1,sizeof(Echipa));
 	if (isEmpty_q(q)) exit(1);
-	
-	aux.fata = q->fata; 
-	e->punc_e = aux.fata->punc_e;
-	e->nume_echipa=(char*)calloc(strlen(aux.fata->nume_echipa)+1, sizeof(char));
-	strcpy(e->nume_echipa,aux.fata->nume_echipa);
+	aux = q->fata;
+	e->punc_e = aux->punc_e;
+	e->nume_echipa=(char*)calloc(strlen(q->fata->nume_echipa)+1, sizeof(char));
+	strcpy(e->nume_echipa,aux->nume_echipa);
 	q->fata=(q->fata)->next;
-	free(aux.fata);
+	free(aux);
 	return e;  	
 } 
 

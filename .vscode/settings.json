@@ -3,6 +3,7 @@
         "liste.h": "c",
         "main.h": "c",
         "coada.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "limits.h": "c"
     }
 }

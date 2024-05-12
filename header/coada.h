@@ -1,6 +1,6 @@
 #include "../main.h"
-#include "../header/liste.h"
-#include "../header/stiva.h"
+#include "liste.h"
+#include "stiva.h"
 
 struct coada
 {
@@ -11,6 +11,7 @@ typedef struct coada coada;
 int isEmpty_q(coada*);
 coada* createQueue();
 void enQueue(coada*, Echipa*);
-Echipa *deQueue(coada*);
+Echipa* deQueue(coada*);
 void citire_coada(Echipa*, coada**, int);
 void afisare_coada(coada*, char*);
+void meciuri(coada*,int*, char*);
