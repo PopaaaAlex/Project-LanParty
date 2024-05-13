@@ -118,23 +118,38 @@ void meciuri(coada* queue, int *nr_echipe, char *argv){
    
     stiva *castigatori = NULL, *pierzatori = NULL;
     FILE *fisier;
-    fisier = fopen(argv,"a");
-    while(!isEmpty_q(queue)){
-    Echipa *echipa_1 = deQueue(queue), *echipa_2 = deQueue(queue);
+    fisier = fopen(argv,"at");
     
+    for(int i = 0; i < *nr_echipe; i += 2) {
     
-    if(echipa_1->punc_e >= echipa_2->punc_e)
-        {
-            echipa_1->punc_e++;
-            push(&castigatori, echipa_1);
-            push(&pierzatori, echipa_2);
+        Echipa *echipa_1 = NULL, *echipa_2 = NULL;//loop infinit;
+
+        echipa_1 = deQueue(queue);
+        echipa_2 = deQueue(queue);
+
+        echipa_1->nume_echipa[strlen(echipa_1->nume_echipa) - 1] = ' ';
+        echipa_2->nume_echipa[strlen(echipa_2->nume_echipa)- 1] = '\0';
+        
+        if (echipa_1 != NULL && echipa_2 != NULL) {
+            fprintf(fisier, "%-33s-%33s\n", echipa_1->nume_echipa, echipa_2->nume_echipa);
+            if(echipa_1->punc_e >= echipa_2->punc_e)
+            {
+                echipa_1->punc_e++;
+                push(&castigatori, echipa_1);
+                push(&pierzatori, echipa_2);
+            }
+            else if(echipa_2->punc_e > echipa_1->punc_e)
+                    {
+                        echipa_2->punc_e++;
+                        push(&castigatori, echipa_2);
+                        push(&pierzatori, echipa_1);
+                    }            
+        } else {
+            printf ("Opps, something went wrong with the teams\n");
         }
-        else if(echipa_2->punc_e > echipa_1->punc_e)
-                {
-                    echipa_2->punc_e++;
-                    push(&castigatori, echipa_2);
-                    push(&pierzatori, echipa_1);
-                }            
+        
+        
+        
 
     }
 }//in coada iau bine informatiile 

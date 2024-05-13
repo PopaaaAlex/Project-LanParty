@@ -11,8 +11,6 @@ int main(int argc, char *argv[])
     int nr_echipe = 0;
     int cerinte[5]= {0};
     
-    //fisier1 = fopen("date/t1/c.in","rt");
-    //fisier2 = fopen("date/t1/d.in","rt");
     fisier1 = fopen(argv[1],"rt");
     fisier2 = fopen(argv[2],"rt");
     if(fisier1 == NULL)
@@ -41,9 +39,9 @@ int main(int argc, char *argv[])
     {
         citire(fisier2, &echipe, &nr_echipe);
         eliminare(&echipe, &nr_echipe);
-        citire_coada(echipe, &queue, nr_echipe);
-        afisare_coada(queue,argv[3]);
-        meciuri(queue, &nr_echipe, argv[3]);       
+        citire_coada(echipe, &queue, nr_echipe); 
+        afisare_coada(queue, argv[3]);
+        meciuri(queue, &nr_echipe, argv[3]);      
     }
     
 

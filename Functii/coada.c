@@ -33,26 +33,30 @@ if (q->fata == NULL ) q->fata = q-> spate ;
 }
 
 Echipa* deQueue(coada *q) {  
-	Echipa *aux; 
-	Echipa *e = (Echipa*)calloc(1,sizeof(Echipa));
-	if (isEmpty_q(q)) exit(1);
+	Echipa *aux = NULL; 
+	if (isEmpty_q(q)) {
+		printf("coada este goala");
+		return NULL;
+	}
+
 	aux = q->fata;
-	e->punc_e = aux->punc_e;
-	e->nume_echipa=(char*)calloc(strlen(q->fata->nume_echipa)+1, sizeof(char));
-	strcpy(e->nume_echipa,aux->nume_echipa);
-	q->fata=(q->fata)->next;
-	free(aux);
-	return e;  	
+	q->fata = q->fata->next;
+
+	return aux;
 } 
 
 void afisare_coada(coada* q, char *argv)
 {
 	FILE *fisier = fopen(argv, "w");
-	while( q->fata != NULL)
+	Echipa *save_fata = q->fata;
+	while(q->fata != NULL)
 	{
 		q->fata->nume_echipa[strlen(q->fata->nume_echipa) - 1] = '\0';
 		fprintf(fisier, "%s\n", q->fata->nume_echipa);
 		q->fata = q->fata->next;
 	}
+	fprintf(fisier,"\n");
+	q->fata = save_fata;
+
 	fclose(fisier);
 }
