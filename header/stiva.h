@@ -13,5 +13,7 @@ typedef struct stiva stiva;
 int isEmpty(stiva*);
 void deleteStack(stiva**);
 void push(stiva**, Echipa*);
+//void printStack(stiva*)
+//Echipa pop(stiva**);
 
 #endif

@@ -41,7 +41,8 @@ int main(int argc, char *argv[])
         eliminare(&echipe, &nr_echipe);
         citire_coada(echipe, &queue, nr_echipe); 
         afisare_coada(queue, argv[3]);
-        meciuri(queue, &nr_echipe, argv[3]);      
+        //meciuri(queue, &nr_echipe, argv[3]); 
+        final(queue, &nr_echipe, argv[3] );     
     }
     
 

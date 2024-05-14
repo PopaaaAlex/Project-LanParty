@@ -14,4 +14,6 @@ void enQueue(coada*, Echipa*);
 Echipa* deQueue(coada*);
 void citire_coada(Echipa*, coada**, int);
 void afisare_coada(coada*, char*);
-void meciuri(coada*,int*, char*);
+stiva *meciuri(coada*,int*, FILE*);
+void final(coada *, int *, char* );
+void enQueueStiva(coada*, stiva*);

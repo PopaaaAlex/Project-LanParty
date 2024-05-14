@@ -27,9 +27,22 @@ void push(stiva**top, Echipa *echipe) {
 }
 
 
-/*void printStack(stiva* stack){
-	while (!isEmpty(stack))
-		//printf("%d ", pop(&stack));
-}*/
+void printStack(stiva* stack){
+	stiva *aux = stack;
+	while (!isEmpty(aux)){
+		printf("%s %.2f", aux->val.nume_echipa, aux->val.punc_e);
+		aux = aux->next;	
+	}
+}
+
+// Echipa pop(stiva** top)
+// {
+// 	stiva *temp =(* top );
+// 	Echipa aux= temp->val;
+// 	*top =(* top)->next;
+// 	free ( temp );
+// 	return aux;
+// }
+
 
 

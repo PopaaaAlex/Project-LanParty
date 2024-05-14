@@ -13,6 +13,7 @@ void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
     {
         fscanf(fisier, "%d%c", &nr_participanti, &space);
         fgets(nume_echipa, sizeof(nume_echipa), fisier);
+        nume_echipa[strlen(nume_echipa) - 1] = '\0';
         jucatori = (Jucator *)calloc(nr_participanti, sizeof(Jucator));
         
          float punctaj_e = 0;        
@@ -114,24 +115,20 @@ void citire_coada(Echipa *echipe, coada **queue, int nr_echipe)
     }
 }
 
-void meciuri(coada* queue, int *nr_echipe, char *argv){
+stiva* meciuri(coada* queue, int *nr_echipe, FILE* fisier){ //facem de tipul stiva-> folosim in urmatoarea functie pwp :3
    
     stiva *castigatori = NULL, *pierzatori = NULL;
-    FILE *fisier;
-    fisier = fopen(argv,"at");
-    
+
     for(int i = 0; i < *nr_echipe; i += 2) {
     
-        Echipa *echipa_1 = NULL, *echipa_2 = NULL;//loop infinit;
-
+        Echipa *echipa_1 = NULL, *echipa_2 = NULL;
         echipa_1 = deQueue(queue);
         echipa_2 = deQueue(queue);
-
-        echipa_1->nume_echipa[strlen(echipa_1->nume_echipa) - 1] = ' ';
-        echipa_2->nume_echipa[strlen(echipa_2->nume_echipa)- 1] = '\0';
+        //printf("%s %s\n", echipa_1->nume_echipa, echipa_2->nume_echipa);
         
         if (echipa_1 != NULL && echipa_2 != NULL) {
             fprintf(fisier, "%-33s-%33s\n", echipa_1->nume_echipa, echipa_2->nume_echipa);
+            printf("%s:%f  %s:%f\n", echipa_1->nume_echipa,echipa_1->punc_e, echipa_2->nume_echipa,echipa_2->punc_e);
             if(echipa_1->punc_e >= echipa_2->punc_e)
             {
                 echipa_1->punc_e++;
@@ -147,9 +144,28 @@ void meciuri(coada* queue, int *nr_echipe, char *argv){
         } else {
             printf ("Opps, something went wrong with the teams\n");
         }
-        
-        
-        
 
     }
-}//in coada iau bine informatiile 
+    fprintf(fisier,"\n");
+    deleteStack(&pierzatori);
+    return castigatori;
+}
+
+void final(coada *queue, int *nr_echipe, char* argv ){//de facut stiva de castigatori
+    FILE *fisier;
+    stiva *castigatori;
+    fisier = fopen(argv,"at");
+    int nr_runda = 1;
+    while((*nr_echipe) > 1)
+    {
+        fprintf(fisier,"--- ROUND NO:%d\n", nr_runda);
+        castigatori = meciuri(queue, nr_echipe, fisier);
+        
+        while(castigatori != NULL){
+            enQueueStiva(queue,castigatori);
+            castigatori = castigatori ->next;
+        }
+        nr_runda++;
+        (*nr_echipe) /= 2;
+    }
+}

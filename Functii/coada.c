@@ -15,7 +15,7 @@ coada* createQueue ()
 
 void enQueue ( coada *q, Echipa *v)
 {
-	Echipa * newNode =( Echipa *)malloc(sizeof(Echipa));
+	Echipa * newNode = (Echipa*)malloc(sizeof(Echipa));
 	newNode->punc_e = v->punc_e;
 	newNode->nume_echipa= (char*)calloc(strlen(v->nume_echipa)+1,sizeof(char));
 	strcpy(newNode->nume_echipa, v->nume_echipa);
@@ -35,13 +35,12 @@ if (q->fata == NULL ) q->fata = q-> spate ;
 Echipa* deQueue(coada *q) {  
 	Echipa *aux = NULL; 
 	if (isEmpty_q(q)) {
-		printf("coada este goala");
+		printf("coada este goala\n");
 		return NULL;
 	}
 
 	aux = q->fata;
 	q->fata = q->fata->next;
-
 	return aux;
 } 
 
@@ -60,3 +59,23 @@ void afisare_coada(coada* q, char *argv)
 
 	fclose(fisier);
 }
+
+ void enQueueStiva(coada*q, stiva* castigatori)
+ {
+	Echipa *newNode  = (Echipa*)malloc(sizeof(Echipa));
+	newNode->punc_e = castigatori->val.punc_e;
+
+	newNode->nume_echipa= (char*)calloc(strlen(castigatori->val.nume_echipa) + 1,sizeof(char));
+	strcpy(newNode->nume_echipa, castigatori->val.nume_echipa);
+	newNode->next = NULL ;
+
+	if (q->spate == NULL ) 
+		q->spate = newNode ;
+			else 
+			{
+				(q->spate)->next = newNode ;
+				(q->spate) = newNode ;
+			}
+
+if (q->fata == NULL ) q->fata = q-> spate ;
+ }
