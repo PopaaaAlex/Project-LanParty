@@ -64,7 +64,7 @@ int echipe_ramase(int *nr_echipe)
 {
     int x = 1;
 
-    while ((x * 2) < *nr_echipe)
+    while ((x * 2) <= *nr_echipe)
         x = x * 2;
 
     return x;
@@ -124,23 +124,21 @@ stiva* meciuri(coada* queue, int *nr_echipe, FILE* fisier){ //facem de tipul sti
         Echipa *echipa_1 = NULL, *echipa_2 = NULL;
         echipa_1 = deQueue(queue);
         echipa_2 = deQueue(queue);
-        //printf("%s %s\n", echipa_1->nume_echipa, echipa_2->nume_echipa);
         
         if (echipa_1 != NULL && echipa_2 != NULL) {
             fprintf(fisier, "%-33s-%33s\n", echipa_1->nume_echipa, echipa_2->nume_echipa);
-            printf("%s:%f  %s:%f\n", echipa_1->nume_echipa,echipa_1->punc_e, echipa_2->nume_echipa,echipa_2->punc_e);
-            if(echipa_1->punc_e >= echipa_2->punc_e)
+            if(echipa_1->punc_e > echipa_2->punc_e)
             {
                 echipa_1->punc_e++;
                 push(&castigatori, echipa_1);
                 push(&pierzatori, echipa_2);
             }
-            else if(echipa_2->punc_e > echipa_1->punc_e)
+            else if(echipa_2->punc_e >= echipa_1->punc_e)
                     {
                         echipa_2->punc_e++;
                         push(&castigatori, echipa_2);
                         push(&pierzatori, echipa_1);
-                    }            
+                    }       
         } else {
             printf ("Opps, something went wrong with the teams\n");
         }
@@ -153,19 +151,23 @@ stiva* meciuri(coada* queue, int *nr_echipe, FILE* fisier){ //facem de tipul sti
 
 void final(coada *queue, int *nr_echipe, char* argv ){//de facut stiva de castigatori
     FILE *fisier;
-    stiva *castigatori;
+    stiva *castigatori, *aux = NULL;
     fisier = fopen(argv,"at");
     int nr_runda = 1;
     while((*nr_echipe) > 1)
     {
-        fprintf(fisier,"--- ROUND NO:%d\n", nr_runda);
+        fprintf(fisier, "--- ROUND NO:%d\n", nr_runda);
         castigatori = meciuri(queue, nr_echipe, fisier);
-        
+
+        aux = castigatori;
         while(castigatori != NULL){
-            enQueueStiva(queue,castigatori);
-            castigatori = castigatori ->next;
+            enQueueStiva(queue, castigatori);
+            castigatori = castigatori->next;
         }
+        fprintf(fisier, "WINNERS OF ROUND NO:%d\n", nr_runda);
+        printStack(aux, fisier);
         nr_runda++;
         (*nr_echipe) /= 2;
     }
+    fclose(fisier);
 }
