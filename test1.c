@@ -14,6 +14,9 @@ void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
         fscanf(fisier, "%d%c", &nr_participanti, &space);
         fgets(nume_echipa, sizeof(nume_echipa), fisier);
         nume_echipa[strlen(nume_echipa) - 1] = '\0';
+        if (nume_echipa[strlen(nume_echipa) - 2] < '0') {
+            nume_echipa[strlen(nume_echipa) - 1] = '\0';
+        }
         jucatori = (Jucator *)calloc(nr_participanti, sizeof(Jucator));
         
          float punctaj_e = 0;        

@@ -29,11 +29,15 @@ void push(stiva**top, Echipa *echipe) {
 
 void printStack(stiva* stack, FILE* fisier){
 	stiva *aux = stack;
+	int counter = 0;
 	while (!isEmpty(aux)){
 		fprintf(fisier,"%-34s-  %.2f\n", aux->val.nume_echipa, aux->val.punc_e);
 		aux = aux->next;	
+		counter++;
 	}
-	fprintf(fisier, "\n");
+	if (counter > 1) {
+		fprintf(fisier, "\n");
+	}
 }
 
 // Echipa pop(stiva** top)
