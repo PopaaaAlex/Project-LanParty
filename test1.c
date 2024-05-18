@@ -1,6 +1,7 @@
 #include "./header/liste.h"
 #include "./header/coada.h"
 #include "main.h"
+#include "./header/BTS.h"
 
 void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
 {
@@ -152,7 +153,7 @@ stiva* meciuri(coada* queue, int *nr_echipe, FILE* fisier){ //facem de tipul sti
     return castigatori;
 }
 
-void final(coada *queue, int *nr_echipe, char* argv ){//de facut stiva de castigatori
+void final(coada *queue, int *nr_echipe, char* argv, stiva **top8){
     FILE *fisier;
     stiva *castigatori, *aux = NULL;
     fisier = fopen(argv,"at");
@@ -163,14 +164,33 @@ void final(coada *queue, int *nr_echipe, char* argv ){//de facut stiva de castig
         castigatori = meciuri(queue, nr_echipe, fisier);
 
         aux = castigatori;
+        if(*nr_echipe == 16)
+        {
+            *top8 = castigatori;
+        }
+
         while(castigatori != NULL){
             enQueueStiva(queue, castigatori);
             castigatori = castigatori->next;
         }
         fprintf(fisier, "WINNERS OF ROUND NO:%d\n", nr_runda);
         printStack(aux, fisier);
+        
         nr_runda++;
         (*nr_echipe) /= 2;
     }
     fclose(fisier);
+}
+
+//Task[4]
+
+void top8_tree(stiva* top8, BTS *node, char *argv)
+{
+    FILE* fisier = fopen(argv,"at");
+    Echipa echipa;
+    while( !isEmpty(top8)){
+        echipa = pop(&top8);
+        node = insert(node, echipa);
+    }
+    reverseInordine(node, fisier);
 }

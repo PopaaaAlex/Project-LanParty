@@ -7,6 +7,7 @@
 #include <limits.h>
 
 
+
 struct Jucator 
 {
     char *Nume;
@@ -31,6 +32,7 @@ int echipe_ramase(int *);
 void eliminare(Echipa**, int*);
 float minim(Echipa*);
 void afisare(Echipa*);
+
 
 
 #endif

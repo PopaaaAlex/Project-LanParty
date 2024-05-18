@@ -40,14 +40,20 @@ void printStack(stiva* stack, FILE* fisier){
 	}
 }
 
-// Echipa pop(stiva** top)
-// {
-// 	stiva *temp =(* top );
-// 	Echipa aux= temp->val;
-// 	*top =(* top)->next;
-// 	free ( temp );
-// 	return aux;
-// }
+Echipa pop(stiva** top)
+{
+	   if (*top == NULL) {
+    	printf("Stiva este goala!\n");
+        Echipa echipaGoala; 
+        echipaGoala.nume_echipa = NULL;
+        return echipaGoala;
+    }
+	stiva *temp =(*top);
+	Echipa aux = temp->val;
+	*top =(*top)->next;
+	free ( temp );
+	return aux;
+}
 
 
 

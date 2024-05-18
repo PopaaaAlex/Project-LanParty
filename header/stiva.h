@@ -14,6 +14,6 @@ int isEmpty(stiva*);
 void deleteStack(stiva**);
 void push(stiva**, Echipa*);
 void printStack(stiva*, FILE*);
-//Echipa pop(stiva**);
+Echipa pop(stiva**);
 
 #endif
