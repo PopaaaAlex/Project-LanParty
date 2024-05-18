@@ -21,6 +21,8 @@ BTS* insert ( BTS * node , Echipa Echipa) {
                     else
                         node ->stanga = insert (node->stanga, Echipa);
             }
+
+        node->inaltime = 1 + maximum(node->stanga, node->dreapta);
     return node ;
     }
 
@@ -33,4 +35,20 @@ void reverseInordine(BTS * node, FILE* fisier)
         fprintf(fisier, "%-34s-  %.2f\n", node->val.nume_echipa, node->val.punc_e);
         reverseInordine(node->stanga, fisier);
     }
+}
+
+int maximum( BTS *node_s, BTS *node_d)
+{
+    if(inaltime(node_s) > inaltime(node_d))
+        return inaltime(node_s);
+            else 
+                return inaltime(node_d);
+}
+
+int inaltime(BTS *node)
+{
+    if(node == NULL) return 1;
+
+    return node->inaltime;
+
 }

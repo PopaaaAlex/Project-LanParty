@@ -201,7 +201,7 @@ void top8_tree(Echipa* top8, BTS *node, char *argv)
         echipa.nume_echipa= (char*)calloc(strlen(top8->nume_echipa) + 1, sizeof(char));
         strcpy(echipa.nume_echipa, top8->nume_echipa);
         echipa.punc_e = top8->punc_e;
-        printf("%s\n", echipa.nume_echipa);
+        printf("%s %f\n", echipa.nume_echipa, echipa.punc_e);
         node = insert(node, echipa);
         top8 = top8->next;
     }   

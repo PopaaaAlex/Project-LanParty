@@ -6,6 +6,7 @@
         "math.h": "c",
         "limits.h": "c",
         "bts.h": "c",
-        "stiva.h": "c"
+        "stiva.h": "c",
+        "limits": "c"
     }
 }
