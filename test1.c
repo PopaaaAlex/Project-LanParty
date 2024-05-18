@@ -1,7 +1,8 @@
 #include "./header/liste.h"
 #include "./header/coada.h"
-#include "main.h"
 #include "./header/BTS.h"
+#include "main.h"
+
 
 void citire(FILE *fisier, Echipa **echipe, int *Nr_echipe)
 {
@@ -153,20 +154,25 @@ stiva* meciuri(coada* queue, int *nr_echipe, FILE* fisier){ //facem de tipul sti
     return castigatori;
 }
 
-void final(coada *queue, int *nr_echipe, char* argv, stiva **top8){
+void final(coada *queue, int *nr_echipe, char* argv, Echipa **top8){
     FILE *fisier;
-    stiva *castigatori, *aux = NULL;
+    stiva *castigatori, *aux = NULL, *aux_2;
     fisier = fopen(argv,"at");
-    int nr_runda = 1;
+    int nr_runda = 1, val = 0;
     while((*nr_echipe) > 1)
     {
         fprintf(fisier, "--- ROUND NO:%d\n", nr_runda);
         castigatori = meciuri(queue, nr_echipe, fisier);
 
         aux = castigatori;
+        aux_2 = castigatori;
         if(*nr_echipe == 16)
-        {
-            *top8 = castigatori;
+        {   
+                while(val < 8){
+               addAtBeginning(top8, aux_2->val.nume_echipa, 0, NULL, aux_2->val.punc_e); 
+                aux_2 = aux_2->next;
+                val++;
+               }
         }
 
         while(castigatori != NULL){
@@ -184,13 +190,23 @@ void final(coada *queue, int *nr_echipe, char* argv, stiva **top8){
 
 //Task[4]
 
-void top8_tree(stiva* top8, BTS *node, char *argv)
+void top8_tree(Echipa* top8, BTS *node, char *argv)
 {
-    FILE* fisier = fopen(argv,"at");
+    FILE* fisier = fopen(argv, "at");
+    fprintf(fisier,"\n");
+    fprintf(fisier,"TOP 8 TEAMS:\n");
     Echipa echipa;
-    while( !isEmpty(top8)){
-        echipa = pop(&top8);
+    while( top8 != NULL)
+    {
+        echipa.nume_echipa= (char*)calloc(strlen(top8->nume_echipa) + 1, sizeof(char));
+        strcpy(echipa.nume_echipa, top8->nume_echipa);
+        echipa.punc_e = top8->punc_e;
+        printf("%s\n", echipa.nume_echipa);
         node = insert(node, echipa);
-    }
+        top8 = top8->next;
+    }   
+    
     reverseInordine(node, fisier);
+    
+    fclose(fisier);
 }

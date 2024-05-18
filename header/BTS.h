@@ -12,5 +12,5 @@ typedef struct BTS BTS;
 
 BTS *newNode(Echipa echipa);
 BTS* insert ( BTS * node , Echipa Echipa);
-void top8_tree(stiva*, BTS*, char*);
+void top8_tree(Echipa*, BTS*, char*);
 void reverseInordine(BTS * node, FILE* fisier);

@@ -7,9 +7,8 @@
 int main(int argc, char *argv[])
 {
     FILE *fisier1, *fisier2, *fisier3;
-    Echipa *echipe = NULL;
+    Echipa *echipe = NULL, *top8 = NULL;
     coada *queue = createQueue();
-    stiva *top8;
     BTS *BTS = NULL;
     int nr_echipe = 0;
     int cerinte[5]= {0};
