@@ -1,6 +1,6 @@
 #include "./header/liste.h"
 #include "./header/coada.h"
-#include "./header/BTS.h"
+#include "./header/BTSandAVL.h"
 #include "main.h"
 
 
@@ -190,23 +190,53 @@ void final(coada *queue, int *nr_echipe, char* argv, Echipa **top8){
 
 //Task[4]
 
-void top8_tree(Echipa* top8, BTS *node, char *argv)
+void top8_tree(Echipa* top8, BTS **node, char *argv)
 {
     FILE* fisier = fopen(argv, "at");
     fprintf(fisier,"\n");
+    BTS *aux_1;
     fprintf(fisier,"TOP 8 TEAMS:\n");
-    Echipa echipa;
+    Echipa echipa, *aux = top8;
     while( top8 != NULL)
     {
         echipa.nume_echipa= (char*)calloc(strlen(top8->nume_echipa) + 1, sizeof(char));
         strcpy(echipa.nume_echipa, top8->nume_echipa);
         echipa.punc_e = top8->punc_e;
-        printf("%s %f\n", echipa.nume_echipa, echipa.punc_e);
-        node = insert(node, echipa);
+       // printf("%s %f\n", echipa.nume_echipa, echipa.punc_e);
+        *node = insert(*node, echipa);
+        top8 = top8->next;
+    }   
+    aux_1 = *node;
+    reverseInordine(*node, fisier);
+    *node = aux_1;
+    top8 = aux;
+    fclose(fisier);
+}
+
+//Task[5]
+
+void top8_treeAVL(Echipa* top8, BTS **node)
+{
+    Echipa echipa, *aux = top8;
+    while( top8 != NULL)
+    {
+        echipa.nume_echipa= (char*)calloc(strlen(top8->nume_echipa) + 1, sizeof(char));
+        strcpy(echipa.nume_echipa, top8->nume_echipa);
+        echipa.punc_e = top8->punc_e;
+        *node = iAVL(*node, echipa);
         top8 = top8->next;
     }   
     
-    reverseInordine(node, fisier);
-    
-    fclose(fisier);
+    top8 = aux;
+}
+
+void afisareAVL(BTS *AVL, FILE *fisier, int inaltime)
+{
+    if (AVL == NULL)
+        return;
+
+    afisareAVL(AVL->stanga, fisier, inaltime);
+    if(AVL->inaltime == inaltime)
+        fprintf(fisier,"%s\n",AVL->val.nume_echipa);
+    afisareAVL(AVL->dreapta, fisier, inaltime);
 }

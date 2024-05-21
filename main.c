@@ -1,7 +1,7 @@
 #include "./header/liste.h"
 #include "./header/coada.h"
 #include "./header/stiva.h"
-#include "./header/BTS.h"
+#include "./header/BTSandAVL.h"
 #include "main.h"
 
 int main(int argc, char *argv[])
@@ -9,8 +9,8 @@ int main(int argc, char *argv[])
     FILE *fisier1, *fisier2, *fisier3;
     Echipa *echipe = NULL, *top8 = NULL;
     coada *queue = createQueue();
-    BTS *BTS = NULL;
-    int nr_echipe = 0;
+    BTS *BTS = NULL, *AVL = NULL;
+    int nr_echipe = 0, inaltime = 2;
     int cerinte[5]= {0};
     
     fisier1 = fopen(argv[1],"rt");
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
         citire_coada(echipe, &queue, nr_echipe); 
         afisare_coada(queue, argv[3]);
         final(queue, &nr_echipe, argv[3], &top8);
-        top8_tree(top8, BTS, argv[3]);
+        top8_tree(top8, &BTS, argv[3]);
     }
 
     if(cerinte[4] == 1)
@@ -63,10 +63,15 @@ int main(int argc, char *argv[])
         citire_coada(echipe, &queue, nr_echipe); 
         afisare_coada(queue, argv[3]);
         final(queue, &nr_echipe, argv[3], &top8);
-        top8_tree(top8, BTS, argv[3]);
-        
+        top8_tree(top8, &BTS, argv[3]);
+        printf("bug1");
+        BST_AVL(&AVL,BTS);
+        printf("asa");
+        FILE* fisier = fopen(argv[3], "at");
+        fprintf(fisier,"\n");
+        fprintf(fisier,"THE LEVEL 2 TEAMS ARE:\n");
+        afisareAVL(AVL, fisier, inaltime);
     }
-
 
     fclose(fisier1); 
     fclose(fisier2);

@@ -1,4 +1,4 @@
-#include "../header/BTS.h"
+#include "../header/BTSandAVL.h"
 
 BTS *newNode(Echipa echipa)
 {
@@ -19,7 +19,7 @@ BTS* insert ( BTS * node , Echipa Echipa) {
                 if((strcmp(node->val.nume_echipa, Echipa.nume_echipa)) < 0)
                     node->dreapta = insert (node->dreapta, Echipa);
                     else
-                        node ->stanga = insert (node->stanga, Echipa);
+                        node->stanga = insert (node->stanga, Echipa);
             }
 
         node->inaltime = 1 + maximum(node->stanga, node->dreapta);
@@ -38,16 +38,16 @@ void reverseInordine(BTS * node, FILE* fisier)
 }
 
 int maximum( BTS *node_s, BTS *node_d)
-{
+{   
     if(inaltime(node_s) > inaltime(node_d))
         return inaltime(node_s);
-            else 
-                return inaltime(node_d);
+    
+    return inaltime(node_d);
 }
 
 int inaltime(BTS *node)
 {
-    if(node == NULL) return 1;
+    if(node == NULL) return 0;
 
     return node->inaltime;
 
