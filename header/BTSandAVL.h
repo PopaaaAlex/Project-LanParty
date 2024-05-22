@@ -1,6 +1,7 @@
 #include "stiva.h"
 #include "../main.h"
 
+
 struct BTS
 {
     Echipa val;
@@ -15,8 +16,10 @@ BTS *newNode(Echipa echipa);
 BTS* insert ( BTS * node , Echipa Echipa);
 void top8_tree(Echipa*, BTS**, char*);
 void reverseInordine(BTS * node, FILE* fisier);
-int maximum(BTS*, BTS*);
+int maximum(int, int);
 int inaltime(BTS*);
+void preorder(BTS*);
+void printTree(BTS* root, int space);
 
 //AVL
 BTS * RightRotation ( BTS *);

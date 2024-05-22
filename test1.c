@@ -233,10 +233,12 @@ void top8_treeAVL(Echipa* top8, BTS **node)
 void afisareAVL(BTS *AVL, FILE *fisier, int inaltime)
 {
     if (AVL == NULL)
-        return;
+        return;    
+    
+    afisareAVL(AVL->dreapta, fisier, inaltime);
 
-    afisareAVL(AVL->stanga, fisier, inaltime);
     if(AVL->inaltime == inaltime)
         fprintf(fisier,"%s\n",AVL->val.nume_echipa);
-    afisareAVL(AVL->dreapta, fisier, inaltime);
+    
+    afisareAVL(AVL->stanga, fisier, inaltime);
 }

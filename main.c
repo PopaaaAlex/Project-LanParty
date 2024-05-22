@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     Echipa *echipe = NULL, *top8 = NULL;
     coada *queue = createQueue();
     BTS *BTS = NULL, *AVL = NULL;
-    int nr_echipe = 0, inaltime = 2;
+    int nr_echipe = 0, inaltime = 1;
     int cerinte[5]= {0};
     
     fisier1 = fopen(argv[1],"rt");
@@ -64,9 +64,10 @@ int main(int argc, char *argv[])
         afisare_coada(queue, argv[3]);
         final(queue, &nr_echipe, argv[3], &top8);
         top8_tree(top8, &BTS, argv[3]);
-        printf("bug1");
+        //printTree(BTS, 0);
+        printf("\n");
         BST_AVL(&AVL,BTS);
-        printf("asa");
+        printTree(AVL,0);
         FILE* fisier = fopen(argv[3], "at");
         fprintf(fisier,"\n");
         fprintf(fisier,"THE LEVEL 2 TEAMS ARE:\n");
