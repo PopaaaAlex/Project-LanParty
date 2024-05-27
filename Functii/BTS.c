@@ -1,7 +1,6 @@
 #include "../header/BTSandAVL.h"
 
-BTS *newNode(Echipa echipa)
-{
+BTS *newNode(Echipa echipa) {
     BTS * node = (BTS*) malloc ( sizeof (BTS ));
     node->val = echipa;
     node->inaltime = 0;
@@ -27,8 +26,7 @@ BTS* insert ( BTS * node , Echipa Echipa) {
     return node ;
     }
 
-void reverseInordine(BTS * node, FILE* fisier)
-{
+void reverseInordine(BTS * node, FILE* fisier) {
    
     if( node != NULL)
     {
@@ -38,48 +36,24 @@ void reverseInordine(BTS * node, FILE* fisier)
     }
 }
 
-int maximum( int node_s, int node_d)
-{   
+int maximum( int node_s, int node_d) {   
     if(node_s > node_d)
         return node_s;
-    
+
     return node_d;
 }
 
-int inaltime(BTS *node)
-{
+int inaltime(BTS *node) {
     if(node == NULL) 
         return 0;
-
     return node->inaltime;
 
 }
 
 void preorder ( BTS * root ) {
-if ( root ){
-    printf ("%s %d \n",root ->val.nume_echipa,root->inaltime);
-    preorder (root ->stanga);
-    preorder (root ->dreapta);
-}
-}
-
-
-void printTree(BTS* root, int space) {
-    if (root == NULL)
-        return;
-
-    // Crearea unui spațiu între niveluri
-    space += 5;
-
-    // Parcurgerea recursivă a subarborelui drept
-    printTree(root->dreapta, space);
-
-    // Afișarea nodului curent, cu spații
-    printf("\n");
-    for (int i = 5; i < space; i++)
-        printf(" ");
-    printf("%s\n", root->val.nume_echipa);
-
-    // Parcurgerea recursivă a subarborelui stâng
-    printTree(root->stanga, space);
+    if ( root ) {
+        printf ("%s %d \n",root ->val.nume_echipa,root->inaltime);
+        preorder (root ->stanga);
+        preorder (root ->dreapta);
+    }
 }

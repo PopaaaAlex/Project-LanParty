@@ -6,18 +6,14 @@
 #include <string.h>
 #include <limits.h>
 
-
-
-struct Jucator 
-{
+struct Jucator {
     char *Nume;
     char *Prenume;
     int punctaj;
 };
 typedef struct Jucator Jucator;
 
-struct Echipa 
-{
+struct Echipa {
     char *nume_echipa;
     int nr_participanti;
     float punc_e;
@@ -31,8 +27,5 @@ void scriere(Echipa*, char*);
 int echipe_ramase(int *);
 void eliminare(Echipa**, int*);
 float minim(Echipa*);
-void afisare(Echipa*);
-
-
 
 #endif

@@ -1,8 +1,7 @@
 #include "../header/liste.h"
 
 
-void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit, float puntaj_e )
-{
+void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit, float puntaj_e ) {
 	Echipa *newEchipa = (Echipa*)malloc(sizeof(Echipa));
 	newEchipa->punc_e = puntaj_e;
 	newEchipa->nume_echipa = (char*)calloc(strlen(nume_echipa) + 1, sizeof(char));
@@ -10,7 +9,7 @@ void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit,
     
 	newEchipa->nr_participanti = index;
 	newEchipa->Jucator=calloc(index, sizeof(Jucator));
-	for(int i = 0; i < index; i++){  
+	for(int i = 0; i < index; i++) {  
 		newEchipa->Jucator[i].Nume = (char*)calloc(strlen(citit[i].Nume) + 1, sizeof(char));
 		strcpy(newEchipa->Jucator[i].Nume, citit[i].Nume);
 
@@ -29,16 +28,16 @@ void addAtBeginning(Echipa **head, char *nume_echipa, int index, Jucator *citit,
 }
 
 
-void deleteNode(Echipa **head, float v){	
+void deleteNode(Echipa **head, float v) {	
 	if (*head==NULL) return; 
 	Echipa *headcopy = *head;
-	if (headcopy->punc_e == v){
+	if (headcopy->punc_e == v) {
 		*head = (*head)->next;
 		free(headcopy);
 		return; 
 	}
 	Echipa *prev = *head;
-	while (headcopy != NULL && headcopy->punc_e != v){
+	while (headcopy != NULL && headcopy->punc_e != v) {
 
 			prev = headcopy;
 			headcopy = headcopy->next;

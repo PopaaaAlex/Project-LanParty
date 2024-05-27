@@ -1,13 +1,13 @@
 #include "../header/stiva.h"
 
 
-int isEmpty(stiva *top){
+int isEmpty(stiva *top) {
 	return top == NULL;
 }
 	
-void deleteStack(stiva **top){
+void deleteStack(stiva **top) {
 	stiva  *temp;
-	while (!isEmpty(*top)){ 
+	while (!isEmpty(*top)) { 
 		temp=*top;
 		*top=(*top)->next;
 		free(temp);
@@ -27,10 +27,10 @@ void push(stiva**top, Echipa *echipe) {
 }
 
 
-void printStack(stiva* stack, FILE* fisier){
+void printStack(stiva* stack, FILE* fisier) {
 	stiva *aux = stack;
 	int counter = 0;
-	while (!isEmpty(aux)){
+	while (!isEmpty(aux)) {
 		fprintf(fisier,"%-34s-  %.2f\n", aux->val.nume_echipa, aux->val.punc_e);
 		aux = aux->next;	
 		counter++;
@@ -40,8 +40,7 @@ void printStack(stiva* stack, FILE* fisier){
 	}
 }
 
-Echipa pop(stiva** top)
-{
+Echipa pop(stiva** top) {
 	   if (*top == NULL) {
     	printf("Stiva este goala!\n");
         Echipa echipaGoala; 

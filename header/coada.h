@@ -2,8 +2,7 @@
 #include "liste.h"
 #include "stiva.h"
 
-struct coada
-{
+struct coada{
     Echipa *fata, *spate;
 };
 typedef struct coada coada;

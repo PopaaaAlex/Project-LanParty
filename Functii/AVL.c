@@ -66,8 +66,7 @@ BTS* iAVL (BTS * node , Echipa Echipa) {
 
         node->inaltime = 1 + maximum(inaltime(node->stanga), inaltime(node->dreapta));
 
-        int k = (inaltime(node ->stanga) - inaltime(node->dreapta));
-
+        int k = (inaltime(node ->stanga) - inaltime(node->dreapta));        
         if (k > 1 && Echipa.punc_e < (node->stanga)->val.punc_e){
             return RightRotation(node);
             }
@@ -79,7 +78,7 @@ BTS* iAVL (BTS * node , Echipa Echipa) {
                             else if(k > 1 && (strcmp(node->val.nume_echipa, Echipa.nume_echipa)) > 0)
                                 return RightRotation(node);
             }
-// && node->dreapta != NULL && node->stanga != NULL && node->dreapta != NULL
+            
         if (k < -1 && Echipa.punc_e > (node->dreapta)->val.punc_e)
             return LeftRotation (node);
             else if (node->val.punc_e == Echipa.punc_e)
@@ -96,8 +95,7 @@ BTS* iAVL (BTS * node , Echipa Echipa) {
         return node ;
     }
 
-void BST_AVL(BTS** AVL, BTS *bst)
-{
+void BST_AVL(BTS** AVL, BTS *bst) {
     if(bst != NULL)
     {
         BST_AVL(AVL,bst->dreapta);
